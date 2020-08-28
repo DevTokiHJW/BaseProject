@@ -1,4 +1,4 @@
-package com.devtokihjw.baseproject.ui.bottomSheetDialogFragment
+package com.devtokihjw.baseproject.ui.bottomSheetDialogFT
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.lifecycle.ViewModelProvider
 import com.devtokihjw.baseproject.R
-import com.devtokihjw.baseproject.ui.BaseViewModel
+import com.devtokihjw.baseproject.ui.BaseVM
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseBottomSheetDialogFragment(private val layoutResId: Int) : BottomSheetDialogFragment() {
+abstract class BaseBottomSheetDialogFT<VM : BottomSheetDialogFTVM>(private val layoutResId: Int) : BottomSheetDialogFragment() {
 
-    abstract val viewModel: BottomSheetDialogFragmentViewModel
+    abstract val vm: VM
 
     private val bottomSheetCallback by lazy {
         object : BottomSheetBehavior.BottomSheetCallback() {
@@ -61,5 +61,5 @@ abstract class BaseBottomSheetDialogFragment(private val layoutResId: Int) : Bot
 
     abstract fun removeObserver()
 
-    inline fun <reified T : BaseViewModel> findViewModel() = ViewModelProvider(requireActivity())[T::class.java]
+    inline fun <reified VM : BaseVM> findVM() = ViewModelProvider(requireActivity())[VM::class.java]
 }

@@ -1,13 +1,13 @@
-package com.devtokihjw.baseproject.ui.activity
+package com.devtokihjw.baseproject.ui.act
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.devtokihjw.baseproject.ui.BaseViewModel
+import com.devtokihjw.baseproject.ui.BaseVM
 
-abstract class BaseActivity(private val layoutResId: Int) : AppCompatActivity() {
+abstract class BaseAct<VM : BaseActVM>(private val layoutResId: Int) : AppCompatActivity() {
 
-    abstract val viewModel: BaseActivityViewModel
+    abstract val vm: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,5 +31,5 @@ abstract class BaseActivity(private val layoutResId: Int) : AppCompatActivity() 
 
     abstract fun removeObserver()
 
-    inline fun <reified T : BaseViewModel> findViewModel() = ViewModelProvider(this)[T::class.java]
+    inline fun <reified VM : BaseVM> findVM() = ViewModelProvider(this)[VM::class.java]
 }

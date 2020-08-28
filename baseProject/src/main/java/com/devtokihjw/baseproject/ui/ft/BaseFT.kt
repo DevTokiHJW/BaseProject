@@ -1,13 +1,13 @@
-package com.devtokihjw.baseproject.ui.fragment
+package com.devtokihjw.baseproject.ui.ft
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.devtokihjw.baseproject.ui.BaseViewModel
+import com.devtokihjw.baseproject.ui.BaseVM
 
-abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
+abstract class BaseFT<VH : FTVM>(contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    abstract val viewModel: FragmentViewModel
+    abstract val vm: VH
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -30,5 +30,5 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     abstract fun removeObserver()
 
-    inline fun <reified T : BaseViewModel> findViewModel() = ViewModelProvider(requireActivity())[T::class.java]
+    inline fun <reified VH : BaseVM> findVM() = ViewModelProvider(requireActivity())[VH::class.java]
 }

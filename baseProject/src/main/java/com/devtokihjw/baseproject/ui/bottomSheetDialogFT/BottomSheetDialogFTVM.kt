@@ -1,10 +1,10 @@
-package com.devtokihjw.baseproject.ui.dialogFragment
+package com.devtokihjw.baseproject.ui.bottomSheetDialogFT
 
 import androidx.lifecycle.MutableLiveData
 import com.devtokihjw.baseproject.BaseApplication
-import com.devtokihjw.baseproject.ui.BaseViewModel
+import com.devtokihjw.baseproject.ui.BaseVM
 
-class DialogFragmentViewModel(baseApplication: BaseApplication) : BaseViewModel(baseApplication) {
+abstract class BottomSheetDialogFTVM(baseApplication: BaseApplication) : BaseVM(baseApplication) {
 
     val dismissValue = MutableLiveData<Boolean?>()
 

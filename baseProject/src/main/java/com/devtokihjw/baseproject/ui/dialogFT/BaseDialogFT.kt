@@ -1,4 +1,4 @@
-package com.devtokihjw.baseproject.ui.dialogFragment
+package com.devtokihjw.baseproject.ui.dialogFT
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.devtokihjw.baseproject.ui.BaseViewModel
+import com.devtokihjw.baseproject.ui.BaseVM
 
-abstract class BaseDialogFragment(private val layoutResId: Int) : DialogFragment() {
+abstract class BaseDialogFT<VH : DialogFTVM>(private val layoutResId: Int) : DialogFragment() {
 
-    abstract val viewModel: DialogFragmentViewModel
+    abstract val vm: VH
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(layoutResId, container, false)
@@ -51,5 +51,5 @@ abstract class BaseDialogFragment(private val layoutResId: Int) : DialogFragment
 
     abstract fun removeObserver()
 
-    inline fun <reified T : BaseViewModel> findViewModel() = ViewModelProvider(requireActivity())[T::class.java]
+    inline fun <reified VH : BaseVM> findVM() = ViewModelProvider(requireActivity())[VH::class.java]
 }
